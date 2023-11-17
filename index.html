@@ -799,3 +799,805 @@
         <script src="main.js"></script>
     </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cadastro do Vendedor</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+        ></script>
+
+        <header>
+            <div class="header-wrapper">
+                <div class="logo">
+                    <a href="#">
+                        <img src="images/logo.webp" alt="Logo" />
+                    </a>
+                    <h1>Cadastro de Vendedor</h1>
+                </div>
+                <a href="#">Precisa de Ajuda?</a>
+            </div>
+        </header>
+
+        <div class="fc-form-wrapper">
+            <!-- Etapa com botão de começar -->
+            <div class="pre-register">
+                <div class="welcome">
+                    <img src="images/welcome.webp" alt="Bem vindo" />
+                </div>
+                <h1>Bem-vindo!!</h1>
+                <p>
+                    Para começar, faça o cadastro como
+                    <strong>vendedor</strong><br />
+                    e preencha algumas informações necessárias
+                </p>
+                <div id="start-register">Começar Cadastro</div>
+            </div>
+            <div id="registration-form" class="fc-form-wrapper">
+                <div class="register-steps">
+                    <div class="register-step active">
+                        <span>1</span>
+                        <p>Fornecer Informações</p>
+                    </div>
+                    <div class="middle-line">
+                        <div class="transition-line"></div>
+                    </div>
+
+                    <div class="register-step">
+                        <span>2</span>
+                        <p>Finalizar</p>
+                    </div>
+                </div>
+                <div class="intern-wrapper">
+                    <!-- Etapa 1 -->
+                    <form
+                        method="post"
+                        autocomplete="off"
+                        id="step-1"
+                        class="form-content"
+                    >
+                        <h2 id="fiscais">
+                            Informações para identificação Fiscal
+                        </h2>
+
+                        <input
+                            type="hidden"
+                            name="action"
+                            value="fs_save_form_submission"
+                        />
+                        <span id="error-msg" class="fs_ssn_error"></span>
+
+                        <div class="input-container">
+                            <label for="business-name">
+                                Nome Empresarial
+                                <div
+                                    id="info"
+                                    data-title="Certifique-se de que o nome fornecido seja exatamente o que consta no contrato de sua empresa"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="15"
+                                        height="15"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            fill="#aaa"
+                                            d="M11 18h2v-2h-2v2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m0-14a4 4 0 0 0-4 4h2a2 2 0 0 1 2-2a2 2 0 0 1 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4Z"
+                                        />
+                                    </svg>
+                                </div>
+                            </label>
+                            <div class="intern-input-container">
+                                <input
+                                    type="text"
+                                    required
+                                    id="business-name"
+                                    name="fs_business-name"
+                                    maxlength="200"
+                                    placeholder="Por favor, insira a razão Social"
+                                />
+                                <div
+                                    class="input-count"
+                                    id="business-name-count"
+                                >
+                                    0/200
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <label for="cnpj">CNPJ</label>
+                            <input
+                                type="text"
+                                id="cnpj"
+                                name="fs_resp_cnpj"
+                                placeholder="Somente Números"
+                                max="18"
+                                maxlength="18"
+                                required
+                            />
+                        </div>
+                        <div class="input-container">
+                            <label for="state-registration"
+                                >Inscrição Estadual</label
+                            >
+                            <div class="radiobox-container">
+                                <div>
+                                    <input
+                                        type="radio"
+                                        id="ICMS"
+                                        value="Contribuinte ICMS"
+                                        name="fs_icms"
+                                    />
+                                    <label for="ICMS">Contribuinte ICMS</label>
+                                </div>
+                                <div>
+                                    <input
+                                        type="radio"
+                                        id="no-ICMS"
+                                        value="Não contribuinte"
+                                        name="fs_no_icms"
+                                    />
+                                    <label for="no-ICMS"
+                                        >Não contribuinte</label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input
+                                type="text"
+                                id="register-number"
+                                name="fs_register_number"
+                                placeholder="Por favor, insira o número de registro atual"
+                            />
+                        </div>
+
+                        <div class="input-container">
+                            <label for="CEP">Dados de Cobrança</label>
+                            <input
+                                type="text"
+                                id="CEP"
+                                name="fs_adress_postal_code"
+                                placeholder="CEP"
+                                maxlength="9"
+                                required
+                                autocomplete="none"
+                            />
+                        </div>
+                        <div class="divided">
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    placeholder="Estado"
+                                    autocomplete="none"
+                                    required
+                                    name="fs_adress_state"
+                                    id="fs_adress_state"
+                                />
+                            </div>
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    placeholder="Cidade"
+                                    autocomplete="none"
+                                    required
+                                    name="fs_adress_city"
+                                    id="fs_adress_city"
+                                />
+                            </div>
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    placeholder="Bairro"
+                                    autocomplete="none"
+                                    required
+                                    name="fs_adress_neighbourhood"
+                                    id="fs_adress_neighbourhood"
+                                />
+                            </div>
+                        </div>
+                        <div class="divided">
+                            <div class="input-container long" id="socios">
+                                <input
+                                    type="text"
+                                    placeholder="Rua"
+                                    autocomplete="none"
+                                    required
+                                    name="fs_adress_street"
+                                    id="fs_adress_street"
+                                />
+                            </div>
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    name="fs_adress_number"
+                                    id="fs_adress_number"
+                                    autocomplete="none"
+                                    required
+                                    placeholder="Número"
+                                />
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input
+                                type="text"
+                                autocomplete="none"
+                                name="fs_adress_apartment"
+                                id="fs_adress_apartment"
+                                required
+                                placeholder="Complemento (opcional)"
+                            />
+                        </div>
+
+                        <div class="step-informations">
+                            <h2>Informações dos Sócios</h2>
+                            <p>
+                                Por favor preencha os campos abaixo para todos
+                                os sócios majoritários (sócios que possuem 25%
+                                ou mais de participação). Se nenhum dos sócios
+                                possuírem 25% ou mais de participação, por favor
+                                adicione 4 sócios com maior participação.
+                            </p>
+                        </div>
+
+                        <div id="partners-form">
+                            <div class="intern-form active">
+                                <h3>Sócio Majoritário</h3>
+                                <div class="partner-informations">
+                                    <div class="input-container">
+                                        <label for="partner-name">
+                                            Nome Completo
+                                        </label>
+                                        <div class="intern-input-container">
+                                            <input
+                                                type="text"
+                                                autocomplete="none"
+                                                required
+                                                id="partner-name"
+                                                name="fs_partner-name[]"
+                                                maxlength="60"
+                                                placeholder="Por favor, digite o nome completo"
+                                            />
+                                            <div
+                                                class="input-count"
+                                                id="partner-name-count"
+                                            >
+                                                0/60
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="">Nacionalidade</label>
+                                        <input
+                                            type="text"
+                                            autocomplete="none"
+                                            required
+                                            placeholder="Nacionalidade"
+                                            name="fs_nationality[]"
+                                        />
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="cpf">CPF</label>
+                                        <input
+                                            type="text"
+                                            id="cpf"
+                                            class="cpf"
+                                            name="fs_resp_ssn[]"
+                                            max="14"
+                                            maxlength="14"
+                                            placeholder="Por favor, inserir CPF"
+                                            autocomplete="none"
+                                        />
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="">Data de Nascimento</label>
+                                        <input
+                                            type="date"
+                                            required
+                                            autocomplete="none"
+                                            name="fs_dob[]"
+                                            min="1920-01-01"
+                                            max="2023-01-01"
+                                        />
+                                    </div>
+                                    <div class="input-container">
+                                        <label for="">Endereço</label>
+                                        <input
+                                            type="text"
+                                            autocomplete="none"
+                                            required
+                                            placeholder="*CEP"
+                                            name="fs_partner_address[]"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="add-new-partner">+ Adicionar outro sócio</div>
+
+                        <div class="step-informations" id="info-da-loja">
+                            <h2>Informações da Loja</h2>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="shop-name"> Nome da Loja </label>
+                            <div class="intern-input-container">
+                                <input
+                                    type="text"
+                                    id="shop-name"
+                                    name="fs_shop_name"
+                                    autocomplete="none"
+                                    maxlength="200"
+                                    placeholder="Por favor, insira a razão Social"
+                                />
+                                <div class="input-count" id="shop-name-count">
+                                    0/200
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="">Contato</label>
+                            <input
+                                type="text"
+                                placeholder="Nome Completo"
+                                name="fs_full_name"
+                                autocomplete="none"
+                            />
+                        </div>
+                        <div class="input-container" id="email_input_container">
+                            <input
+                                type="text"
+                                required
+                                placeholder="E-mail"
+                                name="fs_shop_email"
+                                id="fs_shop_email"
+                            />
+                            <div id="send-email-verification">Enviar</div>
+                        </div>
+                        <div
+                            class="input-container"
+                            id="email-confirmation-input-container"
+                        >
+                            <label for="business-name"
+                                >Código de Confirmação</label
+                            >
+                            <div class="intern-input-container">
+                                <input
+                                    type="text"
+                                    autocomplete="none"
+                                    required
+                                    id="business-name"
+                                    name="fs_business-name"
+                                    maxlength="200"
+                                    placeholder="Por favor, insira o código enviado para o seu e-mail"
+                                />
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input
+                                type="text"
+                                required
+                                autocomplete="none"
+                                placeholder="+55 | Telefone"
+                                name="fs_shop_phone_number"
+                            />
+                        </div>
+                        <div class="input-container">
+                            <input
+                                type="text"
+                                required
+                                autocomplete="none"
+                                placeholder="CEP"
+                                name="fs_shop_postal_code"
+                            />
+                        </div>
+                        <div class="divided">
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    required
+                                    autocomplete="none"
+                                    placeholder="Estado"
+                                    name="fs_shop_state"
+                                />
+                            </div>
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    required
+                                    autocomplete="none"
+                                    placeholder="Cidade"
+                                    name="fs_shop_city"
+                                />
+                            </div>
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    required
+                                    autocomplete="none"
+                                    placeholder="Bairro"
+                                    name="fs_shop_neighbourhood"
+                                />
+                            </div>
+                        </div>
+                        <div class="divided">
+                            <div class="input-container long">
+                                <input
+                                    type="text"
+                                    required
+                                    autocomplete="none"
+                                    placeholder="Rua"
+                                    name="fs_shop_street"
+                                />
+                            </div>
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    required
+                                    autocomplete="none"
+                                    placeholder="Número"
+                                    name="fs_shop_number"
+                                />
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input
+                                type="text"
+                                autocomplete="none"
+                                placeholder="Complemento (opcional)"
+                                name="fs_shop_apartment"
+                            />
+                        </div>
+
+                        <div class="checkbox-container">
+                            <input type="checkbox" name="fs_terms" required />
+                            <span
+                                >Eu li e concordo com os termos da
+                                <a href="#">Política de Privacidade. </a>.</span
+                            >
+                        </div>
+                        <button class="orange-button" id="continue">
+                            Continuar
+                        </button>
+                        <span id="error-msg" class="fs_submit_error"></span>
+                    </form>
+
+                    <!-- Etapa 2 -->
+                    <form method="post" id="step-2" class="form-content">
+                        <h2>Documentação</h2>
+                        <div class="input-container">
+                            <h3>Contrato Social</h3>
+                            <!-- Upload PDF -->
+                            <div class="image-input-container">
+                                <div class="drop-zone" id="pdf-drop-zone">
+                                    <label for="pdf-image-input">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="36"
+                                            height="36"
+                                            viewBox="0 0 256 256"
+                                        >
+                                            <path
+                                                fill="#aaa"
+                                                d="M222 128a6 6 0 0 1-6 6h-82v82a6 6 0 0 1-12 0v-82H40a6 6 0 0 1 0-12h82V40a6 6 0 0 1 12 0v82h82a6 6 0 0 1 6 6Z"
+                                            />
+                                        </svg>
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="pdf-image-input"
+                                        style="display: none"
+                                        required
+                                        accept=".pdf"
+                                        maxlength="4194304"
+                                    />
+                                    <div
+                                        class="image-preview"
+                                        id="pdf-image-preview"
+                                    ></div>
+
+                                    <div
+                                        class="remove-image"
+                                        id="pdf-remove-image"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 512 512"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="32"
+                                                d="m112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
+                                            />
+                                            <path
+                                                fill="black"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-miterlimit="10"
+                                                stroke-width="32"
+                                                d="M80 112h352"
+                                            />
+                                            <path
+                                                fill="none"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="32"
+                                                d="M192 112V72h0a23.93 23.93 0 0 1 24-24h80a23.93 23.93 0 0 1 24 24h0v40m-64 64v224m-72-224l8 224m136-224l-8 224"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-container">
+                            <h3>RG</h3>
+                            <div class="image-input-container">
+                                <!-- Upload RG Frente -->
+                                <div id="drop-zone" class="drop-zone">
+                                    <label for="image-input">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="36"
+                                            height="36"
+                                            viewBox="0 0 256 256"
+                                        >
+                                            <path
+                                                fill="#aaa"
+                                                d="M222 128a6 6 0 0 1-6 6h-82v82a6 6 0 0 1-12 0v-82H40a6 6 0 0 1 0-12h82V40a6 6 0 0 1 12 0v82h82a6 6 0 0 1 6 6Z"
+                                            />
+                                        </svg>
+                                        Frente
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="image-input"
+                                        style="display: none"
+                                        accept=".jpg, .jpeg, .png"
+                                        required
+                                        maxlength="4194304"
+                                    />
+                                    <div
+                                        class="image-preview"
+                                        id="image-preview"
+                                    ></div>
+
+                                    <div class="remove-image" id="remove-image">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 512 512"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="32"
+                                                d="m112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
+                                            />
+                                            <path
+                                                fill="black"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-miterlimit="10"
+                                                stroke-width="32"
+                                                d="M80 112h352"
+                                            />
+                                            <path
+                                                fill="none"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="32"
+                                                d="M192 112V72h0a23.93 23.93 0 0 1 24-24h80a23.93 23.93 0 0 1 24 24h0v40m-64 64v224m-72-224l8 224m136-224l-8 224"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <!-- Upload RG Verso -->
+                                <div id="drop-zone-2" class="drop-zone">
+                                    <label for="image-input-2">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="36"
+                                            height="36"
+                                            viewBox="0 0 256 256"
+                                        >
+                                            <path
+                                                fill="#aaa"
+                                                d="M222 128a6 6 0 0 1-6 6h-82v82a6 6 0 0 1-12 0v-82H40a6 6 0 0 1 0-12h82V40a6 6 0 0 1 12 0v82h82a6 6 0 0 1 6 6Z"
+                                            />
+                                        </svg>
+                                        Verso
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="image-input-2"
+                                        style="display: none"
+                                        required
+                                        accept=".jpg, .jpeg, .png"
+                                        maxlength="4194304"
+                                    />
+                                    <div
+                                        class="image-preview"
+                                        id="image-preview-2"
+                                    ></div>
+
+                                    <div
+                                        class="remove-image"
+                                        id="remove-image-2"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 512 512"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="32"
+                                                d="m112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
+                                            />
+                                            <path
+                                                fill="black"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-miterlimit="10"
+                                                stroke-width="32"
+                                                d="M80 112h352"
+                                            />
+                                            <path
+                                                fill="none"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="32"
+                                                d="M192 112V72h0a23.93 23.93 0 0 1 24-24h80a23.93 23.93 0 0 1 24 24h0v40m-64 64v224m-72-224l8 224m136-224l-8 224"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                Formatos jpg/jpeg/png são aceitos. Máximo de 4MB
+                                por arquivo. Por favor, garanta que enviou as
+                                fotos de frente e verso corretamente.
+                            </p>
+                        </div>
+                        <div class="input-container">
+                            <h3>Selfie</h3>
+                            <div class="image-input-container">
+                                <div id="drop-zone-3" class="drop-zone">
+                                    <label for="image-input-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="36"
+                                            height="36"
+                                            viewBox="0 0 256 256"
+                                        >
+                                            <path
+                                                fill="#aaa"
+                                                d="M222 128a6 6 0 0 1-6 6h-82v82a6 6 0 0 1-12 0v-82H40a6 6 0 0 1 0-12h82V40a6 6 0 0 1 12 0v82h82a6 6 0 0 1 6 6Z"
+                                            />
+                                        </svg>
+                                        Verso
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        id="image-input-3"
+                                        required
+                                        style="display: none"
+                                        accept=".jpg, .jpeg, .png"
+                                        maxlength="4194304"
+                                    />
+                                    <div
+                                        class="image-preview"
+                                        id="image-preview-3"
+                                    ></div>
+
+                                    <div
+                                        class="remove-image"
+                                        id="remove-image-3"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 512 512"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="32"
+                                                d="m112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320"
+                                            />
+                                            <path
+                                                fill="black"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-miterlimit="10"
+                                                stroke-width="32"
+                                                d="M80 112h352"
+                                            />
+                                            <path
+                                                fill="none"
+                                                stroke="black"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="32"
+                                                d="M192 112V72h0a23.93 23.93 0 0 1 24-24h80a23.93 23.93 0 0 1 24 24h0v40m-64 64v224m-72-224l8 224m136-224l-8 224"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                Para validar sua identidade, precisamos de uma
+                                selfie do titular. Fique num local bem iluminado
+                                e evite utilizar acessórios como óculos, bonés,
+                                máscaras e chapéus.
+                            </p>
+                        </div>
+                        <div class="nav-buttons">
+                            <div id="back">Voltar</div>
+                            <button
+                                class="orange-button"
+                                id="send"
+                                type="submit"
+                            >
+                                Concluir
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Barra lateral que registra as etapas -->
+                    <div class="form-steps">
+                        <div class="form-step active">
+                            <p><a href="#fiscais">Informações Fiscais</a></p>
+                        </div>
+                        <div class="form-step">
+                            <p><a href="#socios">Informações dos Sócios</a></p>
+                        </div>
+                        <div class="form-step">
+                            <p>
+                                <a href="#info-da-loja">Informações da Loja</a>
+                            </p>
+                        </div>
+                        <div class="form-step">
+                            <p>Documentação</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>
